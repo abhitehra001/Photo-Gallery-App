@@ -24,17 +24,18 @@ app.set("trust proxy", 1);
 app.use(express.json());
 app.use(cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: process.env.REACT_URL,
     allowedHeaders: "*"
 }));
+
 app.use(session({
     secret: process.env.SESSION_KEY,
     saveUninitialized: false,
     resave: false,
     cookie:{
         maxAge: 60*60*1000,
-        secure: false,
-        sameSite: "lax"
+        secure: true,
+        sameSite: "none"
     }
 }))
 

@@ -1,0 +1,43 @@
+import Gallery from "./Gallery";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Swal from "sweetalert2";
+
+const Dashboard = () => {
+    const navigate = useNavigate();
+    const [user, setUser] = useState({
+        name: "",
+        email: ""
+    })
+    const [photos, setPhotos] = useState([]);
+    const refreshData = () => {
+        axios.get("http://localhost:8000/users/info", { withCredentials: true }).then(response => {
+            if (response.data.msg === "User Found") {
+                setUser({ name: response.data.name, email: response.data.email })
+            } else {
+                Swal.fire({
+                    timer: 1000,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    icon: "info",
+                    titleText: response.data.msg
+                }).then(() => {
+                    navigate("/");
+                })
+            }
+        })
+        axios.get("http://localhost:8000/photos/view", { withCredentials: true }).then(response => {
+            if (!response.data.msg) {
+                setPhotos(response.data.result);
+                console.log(response.data.result);
+            }
+        })
+    }
+    useEffect(() => { refreshData() }, []);
+    return <>
+    <Gallery fetchedPhotos={photos} refreshData={refreshData} user={user} />
+    </>
+}
+
+export default Dashboard;

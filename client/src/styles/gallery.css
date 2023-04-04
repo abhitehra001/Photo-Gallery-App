@@ -1,0 +1,54 @@
+#gallery{
+    padding: 50px 100px;
+}
+#photosContainer{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-evenly;
+}
+#passwordBox, #addBox{
+    background-color: lightblue;
+    padding: 20px 60px;
+    width: fit-content;
+    position: fixed;
+    top: 40%;
+    left: 30%;
+    z-index: 0;
+    border-radius: 20px;
+}
+#addBox{
+    background-color: rgb(190, 212, 248);
+}
+#passwordBox>form>div, #addBox>form>div{
+    margin-left: 200px;
+}
+#passwordBox>form>div>button, #addBox>form>div>button{
+    background-color: lightcoral;
+    margin-left: 20px;
+}
+#passwordBox>form>div>button:first-child, #addBox>form>div>button:first-child{
+    background-color: limegreen;
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+header>div{
+    margin-left: 10px;
+    margin-right: 20px;
+}
+header>input{
+    margin-top: 20px;
+    margin-right: 50px;
+}
+header>button{
+    background-color: lightcoral;
+    color: white;
+    text-shadow: 0px 0px 2px black;
+}
+header>button:nth-child(4){
+    background-color: limegreen;
+    margin-right: 200px;
+}

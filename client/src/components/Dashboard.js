@@ -12,7 +12,7 @@ const Dashboard = () => {
     })
     const [photos, setPhotos] = useState([]);
     const refreshData = () => {
-        axios.get("http://localhost:8000/users/info", { withCredentials: true }).then(response => {
+        axios.get("https://photo-gallery-app-backend.onrender.com/users/info", { withCredentials: true }).then(response => {
             if (response.data.msg === "User Found") {
                 setUser({ name: response.data.name, email: response.data.email })
             } else {
@@ -27,7 +27,7 @@ const Dashboard = () => {
                 })
             }
         })
-        axios.get("http://localhost:8000/photos/view", { withCredentials: true }).then(response => {
+        axios.get("https://photo-gallery-app-backend.onrender.com/photos/view", { withCredentials: true }).then(response => {
             if (!response.data.msg) {
                 setPhotos(response.data.result);
                 console.log(response.data.result);

@@ -6,7 +6,7 @@ const DeleteBox = ({deleteId, deleteHandler, refreshData}) => {
     const [password, setPassword] = useState("");
     const deletePhoto = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8000/photos/delete", { photoId: deleteId, password: password }, { withCredentials: true }).then(response => {
+        axios.post("https://photo-gallery-app-backend.onrender.com/photos/delete", { photoId: deleteId, password: password }, { withCredentials: true }).then(response => {
             Swal.fire({
                 timer: 2000,
                 timerProgressBar: true,

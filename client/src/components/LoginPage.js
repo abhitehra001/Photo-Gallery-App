@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +17,13 @@ const LogIn = () => {
             icon: "warning"
         })
     }
+    useEffect(()=>{
+        axios.get("https://photo-gallery-app-backend.onrender.com/users/info", { withCredentials: true }).then(response => {
+            if (response.data.msg === "User Found") {
+                navigate("/gallery")
+            }
+        })
+    },[])
     const submitHandler = (e) => {
         e.preventDefault();
         if(data.person.length<=10){
@@ -27,7 +34,7 @@ const LogIn = () => {
             setErrorMessage("Please enter valid password");
             return;
         }
-        axios.post("http://localhost:8000/users/login", data, { withCredentials: true }).then((res)=>{
+        axios.post("https://photo-gallery-app-backend.onrender.com/users/login", data, { withCredentials: true }).then((res)=>{
             if(res.data.msg==="Logged In Successfully"){
                 Swal.fire({
                     titleText: res.data.msg,

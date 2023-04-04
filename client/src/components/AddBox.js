@@ -9,7 +9,7 @@ const AddBox = ({setIsAdd, refreshData}) => {
     })
     const addPhoto = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8000/photos/add", photo, { withCredentials: true }).then(response => {
+        axios.post("https://photo-gallery-app-backend.onrender.com/photos/add", photo, { withCredentials: true }).then(response => {
             Swal.fire({
                 timer: 1000,
                 timerProgressBar: true,

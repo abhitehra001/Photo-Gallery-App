@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+    const navigate = useNavigate();
+    useEffect(()=>{
+        axios.get("https://photo-gallery-app-backend.onrender.com/users/info", { withCredentials: true }).then(response => {
+            if (response.data.msg === "User Found") {
+                navigate("/gallery")
+            }
+        })
+    },[])
     const [data, setData] = useState({
         name: "",
         email: "",
@@ -11,7 +19,6 @@ const Register = () => {
         password: "",
         confirmPassword: ""
     });
-    const navigate = useNavigate();
     const setErrorMessage = (msg) => {
         Swal.fire({
             titleText: msg,
@@ -41,7 +48,7 @@ const Register = () => {
             setErrorMessage("Pasword should be atleast 6 Characters long");
             return;
         }
-        axios.post("http://localhost:8000/users/register", data).then((res)=>{
+        axios.post("https://photo-gallery-app-backend.onrender.com/users/register", data).then((res)=>{
             if(res.data.msg==="Registered Successfully"){
                 Swal.fire({
                     titleText: res.data.msg,

@@ -46,7 +46,7 @@ const Gallery = ({fetchedPhotos, refreshData, user}) => {
             }} />
             <button onClick={()=>{setIsAdd(true)}}>Add Photo</button>
             <button onClick={()=>{
-                axios.get("http://localhost:8000/users/logout", { withCredentials: true }).then(response=>{
+                axios.get("https://photo-gallery-app-backend.onrender.com/users/logout", { withCredentials: true }).then(response=>{
                     navigate("/");
                 })
             }}>Log Out</button>
